@@ -1,3 +1,10 @@
+# Environments
+
+- Expo CLI
+- json-server
+- ngrok
+- axios
+
 ## Context API walktrough
 
 - create a context object
