@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,9 +10,18 @@ import {
 import { Feather } from "@expo/vector-icons";
 import { Context } from "../context/BlogContext";
 
-const IndexScreen = () => {
-  //const { data, addBlogPost } = useContext(BlogContext);
+const IndexScreen = ({ navigation }) => {
   const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={() => navigation.navigate("Create")}>
+          <Feather name="plus" size={30} style={{ marginRight: 10 }} />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
 
   return (
     <View>
@@ -22,14 +31,18 @@ const IndexScreen = () => {
         keyExtractor={(blogPost) => blogPost.id.toString()}
         renderItem={({ item }) => {
           return (
-            <View style={styles.row}>
-              <Text style={styles.title}>
-                {item.title} - {item.id}
-              </Text>
-              <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
-                <Feather style={styles.icon} name="trash" />
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Show", { id: item.id })}
+            >
+              <View style={styles.row}>
+                <Text style={styles.title}>
+                  {item.title} - {item.id}
+                </Text>
+                <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                  <Feather style={styles.icon} name="trash" />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           );
         }}
       />
