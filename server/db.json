@@ -16,7 +16,7 @@
       "id": 3
     },
     {
-      "title": "4th title",
+      "title": "4th title updated",
       "content": "4th content",
       "id": 4
     },
@@ -24,16 +24,6 @@
       "title": "5th title",
       "content": "content here",
       "id": 5
-    },
-    {
-      "title": "6th title",
-      "content": "6 content",
-      "id": 6
-    },
-    {
-      "title": "7th title",
-      "content": "some content here ",
-      "id": 7
     }
   ]
 }
